@@ -235,7 +235,7 @@ export default {
     };
   },
   mounted() {
-    then.loading();
+    this.loading();
     axios.get("/api/user").then((res) => {
       this.user = res.data;
     }).then(()=> {
