@@ -17,7 +17,7 @@
         "laravel/sanctum": "^2.10",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^2.5",
-        "gd": "*"
+        "ext-gd": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
