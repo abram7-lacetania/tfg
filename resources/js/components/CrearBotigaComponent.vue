@@ -238,6 +238,7 @@ export default {
     this.loading();
     axios.get("/api/user").then((res) => {
       this.user = res.data;
+      console.log(this.user);
     }).then(()=> {
       Swal.fire({
       title:'<span style="color: #ff6565">Carregant...</span>', 
@@ -255,6 +256,7 @@ export default {
       Swal.showLoading()
       },});
     })
+    console.log(this.user);
   },
 
   methods: {
@@ -277,7 +279,7 @@ export default {
     },
     toastCorrecte() {
       // Use sweetalert2
-      this.$swal({
+      Swal.fire({
         toast: true,
         position: 'top-end',
         icon: 'success',
@@ -292,7 +294,7 @@ export default {
     },
     toastIncorrecte() {
       // Use sweetalert2
-      this.$swal({
+      Swal.fire({
         toast: true,
         position: 'top-end',
         icon: 'error',
