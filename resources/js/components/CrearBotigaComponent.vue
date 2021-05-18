@@ -310,18 +310,18 @@ export default {
     saveForm() {
       let that = this;
       console.log(that.form);
-      that.form.id_usuari = this.user.id;
+      that.form.id_usuari = that.user.id;
       axios
         .post("/api/crearBotiga", that.form)
         .then(() => {
           console.log("saved");
-          this.$router.push({ name: "Botiga" });
-          this.toastCorrecte();
+          that.$router.push({ name: "Botiga" });
+          that.toastCorrecte();
         })
         .catch((error) => {
           that.errors = error.response.data.errors;
           console.log(that.errors);
-          this.toastIncorrecte();
+          that.toastIncorrecte();
         });
     },
   },
