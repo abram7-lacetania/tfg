@@ -38,6 +38,6 @@ class CrearBotigaController extends Controller
         $usuari = User::find($request->id_usuari);
         $usuari->botiga = 1;
         $usuari->save();
-
+        return response()->json(true,200);
     }
 }
