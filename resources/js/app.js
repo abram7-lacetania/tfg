@@ -10,6 +10,7 @@ import swal from 'sweetalert2';
 window.Swal = swal;
 
 const router = new VueRouter(routes);
+const axios = require('axios');
 
 Vue.use(VueSweetalert2);
 Vue.use(VueRouter);
