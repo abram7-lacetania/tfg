@@ -314,11 +314,11 @@ export default {
       that.form.id_usuari = that.user.id;
       axios
         .post("/api/crearBotiga", that.form)
-        .then(() => {
+        //.then(() => {
           console.log("saved");
           that.$router.push({ name: "Botiga" });
           that.toastCorrecte();
-        })
+       // })
         .catch((error) => {
           that.errors = error.response.data.errors;
           console.log(that.errors);
