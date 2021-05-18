@@ -239,6 +239,7 @@ export default {
     axios.get("/api/user").then((res) => {
       this.user = res.data;
       console.log(this.user);
+      return this.user = res.data;
     }).then(()=> {
       Swal.fire({
       title:'<span style="color: #ff6565">Carregant...</span>', 
