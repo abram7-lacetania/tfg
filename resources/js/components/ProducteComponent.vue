@@ -95,7 +95,7 @@
                     <!-- Comentaris -->
                     <div class="content w-100">
                       <div class="container-fluid">
-                        <div class="row">
+                        <div v-if="comentaris.length>0" class="row">
                           <div
                             :class="'col-md-12'"
                             v-for="comentari in comentaris"
@@ -117,18 +117,22 @@
                               </div>
                             </div>
                           </div>
-
                               <div class="row">
                                 {{comentari.descripcio}}
                               </div>
                               <br>
                           </div>
                         </div>
+                        <div v-else class="row">
+                          <div class="col-md-12 text-left">
+                            <h4>Encara no hi ha comentaris...</h4>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <!-- /Comentaris -->
                     <!-- Escriure comentari -->
-                    <form>    
+                    <form v-if="user.nom">    
                           <!-- textarea -->
                           <div class="form-group">
                             <label>Escriu un comentari</label>
@@ -232,8 +236,14 @@ export default {
     this.loading();
 
     axios.get("/api/producte/" + this.$route.params.id).then((res) => {
-      console.log(res);
-      this.producte = res.data;
+      console.log("beep");
+      console.log(res.data);
+      console.log("boop");
+      if (res.data == false) {
+        this.$router.push({ name: "Productes" });
+      } else {
+        this.producte = res.data;
+      }
     }).then(()=>{
       axios.get("/api/comentaris/" + this.$route.params.id).then((res) => {
       console.log(res);
@@ -266,6 +276,9 @@ export default {
       this.form.id_usuari = this.user.id;
       this.form.id_producte = this.producte.id;
       let that = this;
+      if(this.form.descripcio==null) {
+        this.form.descripcio="";
+      }
       axios
         .post("/api/pujarComentari", that.form)
         .then((res) => {
@@ -344,12 +357,8 @@ export default {
       axios
         .post("/api/afegirCistella/" + this.producte.id)
         .then((res) => {
-          console.log(res);
           this.toastCorrecte();
-          axios.get("/api/producte/" + this.$route.params.id).then((res) => {
-            console.log(res);
-            this.producte = res.data;
-          });
+          setTimeout(() => { this.$router.push({ name: "Productes" }); }, 1000);
           return false;
         })
         .catch((error) => {

@@ -16,10 +16,10 @@
                   ');'
                 "
               >
-                <h3 class="widget-user-username text-right">
+                <h1 class="titol text-right">
                   {{ this.botiga.nom }}
-                </h3>
-                <h5 class="widget-user-desc text-right">{{ this.user.nom }}</h5>
+                </h1>
+                <h5 class="titol text-right">{{ this.user.nom }}</h5>
               </div>
 
               <div v-else
@@ -109,19 +109,19 @@
                 <br />
                 <div class="row">
                   <div class="col-md-4 text-center">
-                    <h5>
+                    <h5 v-if="this.botiga.instagram">
                       <li class="fab fa-instagram mr-1"></li>
                       {{ this.botiga.instagram }}
                     </h5>
                   </div>
                   <div class="col-md-4 text-center">
-                    <h5>
+                    <h5 v-if="this.botiga.facebook">
                       <li class="fab fa-facebook mr-1"></li>
                       {{ this.botiga.facebook }}
                     </h5>
                   </div>
                   <div class="col-md-4 text-center">
-                    <h5>
+                    <h5 v-if="this.botiga.twitter">
                       <li class="fab fa-twitter mr-1"></li>
                       {{ this.botiga.twitter }}
                     </h5>
@@ -139,7 +139,7 @@
     <section>
       <div class="content w-100">
         <div class="container-fluid">
-          <div class="row">
+          <div v-if="productes.length>0" class="row">
             <div
               :class="'col-md-4 card-deck mb-4 ml-2'"
               v-for="producte in productes"
@@ -195,6 +195,15 @@
             <!-- /.col-md-6 card-deck-->
           </div>
           <!-- /.row -->
+
+          <div v-else class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 p-4 text-center">
+              <h3>Encara no hi ha productes.</h3>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+
         </div>
         <!-- /.container-fluid -->
       </div>
@@ -211,6 +220,10 @@
   background-position: center !important;
   height: 300px;
   background-repeat: no-repeat !important;
+}
+.titol {
+   color: #ff6565;
+   text-shadow: 2px 2px 2px rgb(34, 34, 34);
 }
 </style>
 

@@ -31,9 +31,13 @@ class ProductesController extends Controller
     public function producte($id)
     {
         $producte = Producte::find($id);
-        $producte->visites = $producte->visites + 1;
+        if ($producte) {
+          $producte->visites = $producte->visites + 1;
         $producte->save();
-        return $producte;
+        } else {
+            $producte = false;
+        }
+        return $producte; 
     }
 
     public function comentaris($id)
@@ -44,6 +48,9 @@ class ProductesController extends Controller
 
     public function pujarComentari(Request $request)
     {
+        $request->validate([
+            'valoracio' => ['required'],
+        ]);
         Comentari::create([
             'id_usuari' => $request->id_usuari,
             'id_producte' => $request->id_producte,
@@ -92,7 +99,7 @@ class ProductesController extends Controller
     }
     public function producteBotiga($id)
     {
-        $producte = Producte::where("id_botiga", $id)->get();
+        $producte = Producte::where("id_botiga", $id)->where('actiu',1)->where('eliminat',0)->get();
         return $producte;
     }
     public function afegirProducte(Request $request)

@@ -147,46 +147,6 @@ export default {
                     path: "/perfil/:id",
                     component: PerfilBotiga,
                     name: "PerfilBotiga",
-                    beforeEnter: (to, form, next) => {
-                        axios
-                            .get("/api/athenticated")
-                            .then(() => {
-                                next();
-                            })
-                            .catch(() => {
-                                return next({ name: "Login" });
-                            });
-                    }
-                },
-                {
-                    path: "/productesBotiga/:id",
-                    component: PerfilBotiga,
-                    name: "ProductesBotiga",
-                    beforeEnter: (to, form, next) => {
-                        axios
-                            .get("/api/athenticated")
-                            .then(() => {
-                                next();
-                            })
-                            .catch(() => {
-                                return next({ name: "Login" });
-                            });
-                    }
-                },
-                {
-                    path: "/user/:id",
-                    component: PerfilBotiga,
-                    name: "User",
-                    beforeEnter: (to, form, next) => {
-                        axios
-                            .get("/api/athenticated")
-                            .then(() => {
-                                next();
-                            })
-                            .catch(() => {
-                                return next({ name: "Login" });
-                            });
-                    }
                 },
                 {
                     path: "/cistella",
