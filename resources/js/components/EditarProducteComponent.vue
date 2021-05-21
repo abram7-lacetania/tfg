@@ -246,7 +246,6 @@ export default {
         },
         fileSelected(e) {
         this.files = e.target.files
-        console.log(this.files);
         },
         toastCorrecte() {
         // Use sweetalert2
@@ -309,7 +308,7 @@ export default {
                 this.toastIncorrecte();
                 });
 
-            console.log(that.form);
+           
         }, 
     },
 };
